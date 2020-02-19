@@ -47,6 +47,8 @@ jobs:
         mv -f out/* .
         rm -rf ./out
         find . -type f | cut -c3- | grep -v ".git" | while read i; do echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
+        find . -name *.html | while read i; do echo "curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/${i:2}" ;done >webarchive.sh
+        find . -name *.pdf  | while read i; do echo "curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/${i:2}" ;done >>webarchive.sh
         git config --local user.email "zettelmuseum@gmail.com"
         git config --local user.name "zettelmuseum"
         git add -A
