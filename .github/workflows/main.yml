@@ -35,7 +35,6 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: out
-        path: out
     - name: run
       run: |
         git config --local user.email "zettelmuseum@gmail.com"
