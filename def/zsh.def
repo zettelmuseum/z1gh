@@ -1,0 +1,4 @@
+from: markdown
+to: revealjs
+table-of-contents: true
+standalone: true

@@ -1,0 +1,4 @@
+from: markdown
+to: beamer
+table-of-contents: true
+standalone: true
