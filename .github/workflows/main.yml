@@ -4,15 +4,24 @@ on: push
 
 jobs:
   build:
-    container: pandoc/core:2.9
+    container: pandoc/latex:2.9
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Create local changes      
       run: |
         mkdir out
-        echo hi >hi.txt
-        pandoc --standalone --output=out/hi.html hi.txt
+        find . -name "*.md" | pandoc -d "./zmh.def" "$i" -o "out/${i%.*}.html"; done
+        find . -name "*.md" | pandoc -d "./zmp.def" "$i" -o "out/${i%.*}.pdf"; done
+        find . -name "*.md" | pandoc -d "./zmd.def" "$i" -o "out/${i%.*}.docx"; done
+        find . -name "*.md" | pandoc -d "./zme.def" "$i" -o "out/${i%.*}.epub"; done
+        echo ---
+        find . -name "*.org" | pandoc -d "./zoh.def" "$i" -o "out/${i%.*}.html"; done
+        find . -name "*.org" | pandoc -d "./zop.def" "$i" -o "out/${i%.*}.pdf"; done
+        find . -name "*.org" | pandoc -d "./zod.def" "$i" -o "out/${i%.*}.docx"; done
+        find . -name "*.org" | pandoc -d "./zoe.def" "$i" -o "out/${i%.*}.epub"; done
+
+
     - uses: actions/upload-artifact@master
       with:
         name: out
