@@ -10,13 +10,13 @@ jobs:
     - uses: actions/checkout@master
     - name: Create local changes      
       run: |
-        mkdir output
+        mkdir -p out/out
         echo hi >hi.txt
-        pandoc --standalone --output=output/hi.pdf hi.txt
+        pandoc --standalone --output=out/out/hi.pdf hi.txt
     - uses: actions/upload-artifact@master
       with:
-        name: output
-        path: output
+        name: out
+        path: out
         
   deploy:
     runs-on: ubuntu-latest
@@ -24,8 +24,8 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/download-artifact@master
       with:
-        name: output
-        path: output
+        name: out
+        path: out
     - name: run
       run: |
         git config --local user.email "action@github.com"
