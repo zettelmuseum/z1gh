@@ -4,15 +4,15 @@ on: push
 
 jobs:
   build:
-    container: pandoc/latex:2.9
+    container: pandoc/core:2.9
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Create local changes      
       run: |
-        mkdir -p out/out
+        mkdir out
         echo hi >hi.txt
-        pandoc --standalone --output=out/out/hi.pdf hi.txt
+        pandoc --standalone --output=out/hi.html hi.txt
     - uses: actions/upload-artifact@master
       with:
         name: out
@@ -20,6 +20,7 @@ jobs:
         
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - uses: actions/checkout@master
     - uses: actions/download-artifact@master
