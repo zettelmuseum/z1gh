@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Create local changes      
       run: |
-        mkdir out
+        mkdir -p out
         find . -name "*.md" | pandoc -d "./zmh.def" "$i" -o "out/${i%.*}.html"; done
         find . -name "*.md" | pandoc -d "./zmp.def" "$i" -o "out/${i%.*}.pdf"; done
         find . -name "*.md" | pandoc -d "./zmd.def" "$i" -o "out/${i%.*}.docx"; done
