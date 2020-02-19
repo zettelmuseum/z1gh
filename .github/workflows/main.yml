@@ -39,7 +39,7 @@ jobs:
       run: |
         mv -f out/* .
         rm -rf ./out
-        for i in * ; echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
+        for i in * ; do echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
         git config --local user.email "zettelmuseum@gmail.com"
         git config --local user.name "zettelmuseum"
         git add -A
