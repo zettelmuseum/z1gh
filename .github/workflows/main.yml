@@ -11,15 +11,15 @@ jobs:
     - name: Create local changes      
       run: |
         mkdir -p out
-        find . -name "*.md" | while read i; do pandoc -d "./zmh.def" "$i" -o "out/${i%.*}.html" ;done
-        find . -name "*.md" | while read i; do pandoc -d "./zmp.def" "$i" -o "out/${i%.*}.pdf" ;done
-        find . -name "*.md" | while read i; do pandoc -d "./zmd.def" "$i" -o "out/${i%.*}.docx" ;done
-        find . -name "*.md" | while read i; do pandoc -d "./zme.def" "$i" -o "out/${i%.*}.epub" ;done
+        find . -name "*.md" | while read i; do pandoc -d "./def/zmh.def" "$i" -o "out/${i%.*}.html" ;done
+        find . -name "*.md" | while read i; do pandoc -d "./def/zmp.def" "$i" -o "out/${i%.*}.pdf" ;done
+        find . -name "*.md" | while read i; do pandoc -d "./def/zmd.def" "$i" -o "out/${i%.*}.docx" ;done
+        find . -name "*.md" | while read i; do pandoc -d "./def/zme.def" "$i" -o "out/${i%.*}.epub" ;done
         echo ---
-        find . -name "*.org" | while read i; do pandoc -d "./zoh.def" "$i" -o "out/${i%.*}.html" ;done
-        find . -name "*.org" | while read i; do pandoc -d "./zop.def" "$i" -o "out/${i%.*}.pdf" ;done
-        find . -name "*.org" | while read i; do pandoc -d "./zod.def" "$i" -o "out/${i%.*}.docx" ;done
-        find . -name "*.org" | while read i; do pandoc -d "./zoe.def" "$i" -o "out/${i%.*}.epub" ;done
+        find . -name "*.org" | while read i; do pandoc -d "./def/zoh.def" "$i" -o "out/${i%.*}.html" ;done
+        find . -name "*.org" | while read i; do pandoc -d "./def/zop.def" "$i" -o "out/${i%.*}.pdf" ;done
+        find . -name "*.org" | while read i; do pandoc -d "./def/zod.def" "$i" -o "out/${i%.*}.docx" ;done
+        find . -name "*.org" | while read i; do pandoc -d "./def/zoe.def" "$i" -o "out/${i%.*}.epub" ;done
 
 
     - uses: actions/upload-artifact@master
@@ -37,6 +37,9 @@ jobs:
         name: out
     - name: run
       run: |
+        mv -f out/* .
+        rm -rf ./out
+        for i in * ; echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
         git config --local user.email "zettelmuseum@gmail.com"
         git config --local user.name "zettelmuseum"
         git add -A
