@@ -11,15 +11,15 @@ jobs:
     - name: Create local changes      
       run: |
         mkdir -p out
-        find . -name "*.md" | pandoc -d "./zmh.def" "$i" -o "out/${i%.*}.html"; done
-        find . -name "*.md" | pandoc -d "./zmp.def" "$i" -o "out/${i%.*}.pdf"; done
-        find . -name "*.md" | pandoc -d "./zmd.def" "$i" -o "out/${i%.*}.docx"; done
-        find . -name "*.md" | pandoc -d "./zme.def" "$i" -o "out/${i%.*}.epub"; done
+        find . -name "*.md" | pandoc -d "./zmh.def" "$i" -o "out/${i%.*}.html"
+        find . -name "*.md" | pandoc -d "./zmp.def" "$i" -o "out/${i%.*}.pdf"
+        find . -name "*.md" | pandoc -d "./zmd.def" "$i" -o "out/${i%.*}.docx"
+        find . -name "*.md" | pandoc -d "./zme.def" "$i" -o "out/${i%.*}.epub"
         echo ---
-        find . -name "*.org" | pandoc -d "./zoh.def" "$i" -o "out/${i%.*}.html"; done
-        find . -name "*.org" | pandoc -d "./zop.def" "$i" -o "out/${i%.*}.pdf"; done
-        find . -name "*.org" | pandoc -d "./zod.def" "$i" -o "out/${i%.*}.docx"; done
-        find . -name "*.org" | pandoc -d "./zoe.def" "$i" -o "out/${i%.*}.epub"; done
+        find . -name "*.org" | pandoc -d "./zoh.def" "$i" -o "out/${i%.*}.html"
+        find . -name "*.org" | pandoc -d "./zop.def" "$i" -o "out/${i%.*}.pdf"
+        find . -name "*.org" | pandoc -d "./zod.def" "$i" -o "out/${i%.*}.docx"
+        find . -name "*.org" | pandoc -d "./zoe.def" "$i" -o "out/${i%.*}.epub"e
 
 
     - uses: actions/upload-artifact@master
