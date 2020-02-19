@@ -4,20 +4,50 @@ on: push
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     container: pandoc/latex:2.9
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Create local changes
+    - name: Create local changes      
       run: |
+        mkdir output
         echo hi >hi.txt
-        pandoc --standalone --output=hi.pdf hi.txt
-    - name: Commit files
+        pandoc --standalone --output=output/hi.pdf hi.txt
+    - uses: actions/upload-artifact@master
+      with:
+        name: output
+        path: output
+        
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/download-artifact@master
+      with:
+        name: output
+        path: output
+    - name: run
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "Add changes" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+    - uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
