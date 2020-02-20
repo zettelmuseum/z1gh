@@ -11,7 +11,7 @@ jobs:
     - name: Create local changes      
       run: |
         mkdir -p out
-        cp "*.def" out
+        cp *.def out
         cd out
         find . -maxdepth 1 | while read i; do test -f "$i.def" && pandoc -d "$i.def" "$i" ;done
         cd ..
