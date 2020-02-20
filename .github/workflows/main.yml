@@ -13,7 +13,7 @@ jobs:
         mkdir -p out
         cp *.def out
         cd out
-        find . -maxdepth 1 | while read i; do test -f "$i.def" && pandoc -d "$i.def" "$i" ;done
+        find . -maxdepth 1 | while read i; do test -f "$i.def" && pandoc -d "$i.def" "$i" || echo ;done
         cd ..
 
     - uses: actions/upload-artifact@master
