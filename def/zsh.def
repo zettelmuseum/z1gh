@@ -1,4 +1,3 @@
 from: markdown
-to: revealjs
-table-of-contents: true
+to: dzslides
 standalone: true

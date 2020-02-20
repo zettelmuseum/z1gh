@@ -1,9 +1,0 @@
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/index.html
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/test1.md.html
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/folien.text.html
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/tab.csv.html
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/test1.org.html
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/test1.org.pdf
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/folien.text.pdf
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/test1.md.pdf
-curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/tab.csv.pdf
