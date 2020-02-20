@@ -1,5 +1,0 @@
-from: markdown
-to: epub
-table-of-contents: true
-standalone: true
-

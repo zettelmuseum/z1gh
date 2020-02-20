@@ -1,5 +1,0 @@
-from: org
-to: docx
-table-of-contents: true
-standalone: true
-

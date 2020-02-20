@@ -10,24 +10,9 @@ jobs:
     - uses: actions/checkout@master
     - name: Create local changes      
       run: |
-        mkdir -p out
-        # was: ${i%.x}
-        find . -name "*.md" | while read i; do pandoc -d "./def/zmh.def" "$i" -o "out/$i.html" ;done
-        find . -name "*.md" | while read i; do pandoc -d "./def/zmp.def" "$i" -o "out/$i.pdf" ;done
-        find . -name "*.md" | while read i; do pandoc -d "./def/zmd.def" "$i" -o "out/$i.docx" ;done
-        find . -name "*.md" | while read i; do pandoc -d "./def/zme.def" "$i" -o "out/$i.epub" ;done
-        echo ---
-        find . -name "*.org" | while read i; do pandoc -d "./def/zoh.def" "$i" -o "out/$i.html" ;done
-        find . -name "*.org" | while read i; do pandoc -d "./def/zop.def" "$i" -o "out/$i.pdf" ;done
-        find . -name "*.org" | while read i; do pandoc -d "./def/zod.def" "$i" -o "out/$i.docx" ;done
-        find . -name "*.org" | while read i; do pandoc -d "./def/zoe.def" "$i" -o "out/$i.epub" ;done
-        echo ---
-        find . -name "*.text" | while read i; do pandoc -d "./def/zsb.def" "$i" -o "out/$i.pdf" ;done
-        find . -name "*.text" | while read i; do pandoc -d "./def/zsp.def" "$i" -o "out/$i.pptx" ;done
-        find . -name "*.text" | while read i; do pandoc -d "./def/zsh.def" "$i" -o "out/$i.html" ;done
-        echo ---
-        find . -name "*.csv" | while read i; do pandoc -d "./def/zch.def" "$i" -o "out/$i.html" ;done
-        find . -name "*.csv" | while read i; do pandoc -d "./def/zcp.def" "$i" -o "out/$i.pdf" ;done
+        mkdir -p out && cp *.def out && cd out
+        find . -maxdepth 1 | while read i; do test -f "$i.def" && pandoc -d "$i.def" "$i" ;done
+        cd ..
 
     - uses: actions/upload-artifact@master
       with:
@@ -46,13 +31,15 @@ jobs:
       run: |
         mv -f out/* .
         rm -rf ./out
-        find . -type f -maxdepth 1 | cut -c3- | sort | grep -v ".git" | while read i; do echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
+        find . -type f -maxdepth 1 | cut -c3- | sort | grep -v ".def" | while read i; do echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
         find . -name "*.html" -maxdepth 1 | while read i; do echo "curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/${i:2}" ;done >webarchive.sh
         find . -name "*.pdf" -maxdepth 1 | while read i; do echo "curl -v https://web.archive.org/save/https://zettelmuseum.github.io/z1gh/${i:2}" ;done >>webarchive.sh
         git config --local user.email "zettelmuseum@gmail.com"
         git config --local user.name "zettelmuseum"
         git add -A
         git commit -m "Add changes" 
+        git gc
+        git count-objects -vH >git.txt
     - uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

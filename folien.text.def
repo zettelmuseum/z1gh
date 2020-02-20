@@ -1,3 +1,4 @@
 from: markdown
 to: dzslides
+output-file: folien.html
 standalone: true

@@ -1,5 +1,0 @@
-from: markdown
-to: html
-table-of-contents: true
-standalone: true
-

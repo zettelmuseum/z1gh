@@ -1,4 +1,0 @@
-from: csv
-to: pdf
-table-of-contents: true
-standalone: true

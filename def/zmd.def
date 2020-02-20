@@ -1,5 +1,0 @@
-from: markdown
-to: docx
-table-of-contents: true
-standalone: true
-

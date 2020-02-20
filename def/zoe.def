@@ -1,5 +1,0 @@
-from: org
-to: epub
-table-of-contents: true
-standalone: true
-

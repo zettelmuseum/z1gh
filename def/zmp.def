@@ -1,5 +1,0 @@
-from: markdown
-to: pdf
-table-of-contents: true
-standalone: true
-

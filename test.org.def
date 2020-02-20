@@ -1,5 +1,6 @@
 from: org
-to: html
+to: pdf
+output-file: test.pdf
 table-of-contents: true
 standalone: true
 
