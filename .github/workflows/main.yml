@@ -12,7 +12,7 @@ jobs:
     - name: Create local changes      
       run: |
         mkdir -p out
-        cp * out
+        cp * out || echo
         cd out
         find . -maxdepth 1 | while read i; do test -f "$i.def" && pandoc -d "$i.def" "$i" || echo ;done
         cd ..
@@ -35,10 +35,10 @@ jobs:
         mv -f out/* .
         rm -rf ./out
         find . -type f -maxdepth 1 | cut -c3- | sort | grep -v ".def" | while read i; do echo "<a href=\"$i\">$i</a><br /><br />" >> index.html; done
-        ls -ltr >ls.txt
-        ls -1 >l1.txt
+        ls -ltr >zz_ls.txt
+        ls -1 >zz_l1.txt
         git gc
-        git count-objects -vH >git.txt
+        git count-objects -vH >zz_git.txt
         git config --local user.email "zettelmuseum@gmail.com"
         git config --local user.name "zettelmuseum"
         git add -A
